@@ -5,6 +5,17 @@ require 'capybara-screenshot/rspec'
 require 'rack_session_access/capybara'
 require 'action_dispatch'
 
+module ::Selenium::WebDriver::Remote
+  class Bridge
+    alias old_execute execute
+
+    def execute(*args)
+      sleep 0.1 if ENV["CI"]
+      old_execute(*args)
+    end
+  end
+end 
+
 RSpec.configure do |config|
   Capybara.default_max_wait_time = 4
   Capybara.javascript_driver = :chrome_en

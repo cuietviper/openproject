@@ -47,7 +47,8 @@ module Components
     end
 
     def submit_in_global_scope
-      page.find('.global-search--project-scope[title="all_projects"]', wait: 10).click
+      expect(page).to have_selector('.global-search--project-scope[title="all_projects"]', wait: 10)
+      page.find('.global-search--project-scope[title="all_projects"]').click
     end
 
     def expect_global_scope_marked
