@@ -13,8 +13,8 @@ def register_chrome(language, name: :"chrome_#{language}")
 
     if ActiveRecord::Type::Boolean.new.cast(ENV['OPENPROJECT_TESTING_NO_HEADLESS'])
       # Maximize the window however large the available space is
-      options.add_argument('start-maximized')
-      # options.add_argument('window-size=1920,1080')
+      # options.add_argument('start-maximized')
+      options.add_argument('window-size=1360,1020')
       # Open dev tools for quick access
       if ActiveRecord::Type::Boolean.new.cast(ENV['OPENPROJECT_TESTING_AUTO_DEVTOOLS'])
         options.add_argument('auto-open-devtools-for-tabs')

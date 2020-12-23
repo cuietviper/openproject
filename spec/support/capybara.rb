@@ -9,9 +9,11 @@ module ::Selenium::WebDriver::Remote
   class Bridge
     alias old_execute execute
 
-    def execute(*args)
-      sleep 0.1 if ENV["CI"]
-      old_execute(*args)
+    def execute(command, *args)
+      if ENV["CI"] && ["element_click", "element_send_keys", "find_elements"].include?(command.to_s)
+        sleep 0.2
+      end
+      old_execute(command, *args)
     end
   end
 end 
